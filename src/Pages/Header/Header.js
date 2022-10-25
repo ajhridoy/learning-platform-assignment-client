@@ -56,20 +56,20 @@ const Header = () => {
                         navbar ? "block" : "hidden"
                     }`}
                 >
-                    <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                        <li className="text-gray-600 hover:text-orange-600 hover:font-semibold">
+                    <ul className="items-center justify-center text-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+                        <li className="text-gray-600 hover:text-orange-600 font-semibold">
                             <Link to='/home'>Home</Link>
                         </li>
-                        <li className="text-gray-600 hover:text-orange-600 hover:font-semibold">
+                        <li className="text-gray-600 hover:text-orange-600 font-semibold">
                             <Link to='/courses'>Courses</Link>
                         </li>
-                        <li className="text-gray-600 hover:text-orange-600 hover:font-semibold">
+                        <li className="text-gray-600 hover:text-orange-600 font-semibold">
                             <Link to='/faq'>FAQ</Link>
                         </li>
-                        <li className="text-gray-600 hover:text-orange-600 hover:font-semibold">
+                        <li className="text-gray-600 hover:text-orange-600 font-semibold">
                             <Link to='/blog'>Blog</Link>
                         </li>
-                        <li className="text-gray-600 hover:text-orange-600 hover:font-semibold">
+                        <li className="text-gray-600 hover:text-orange-600 font-semibold">
                             <Link to='#'><button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Dark</button></Link>
                         </li>
                         <li className="text-gray-600 hover:text-blue-600">

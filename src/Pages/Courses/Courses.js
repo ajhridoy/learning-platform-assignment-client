@@ -26,7 +26,7 @@ const Courses = () => {
                 <h2 className='text-xl font-semibold my-8 text-center underline'>Our Courses:</h2>
                 <div>
                     {
-                        courses.map(course => <Link key={course.id}><div className='bg-gray-500 hover:bg-gray-700 text-white mb-3 mx-3 text-center p-3 rounded-lg font-medium'>{course.courseName}</div></Link>)
+                        courses.map(course => <Link to={`/course/${course.id}`} key={course.id}><div className='bg-gray-500 hover:bg-gray-700 text-white mb-3 mx-3 text-center p-3 rounded-lg font-medium'>{course.courseName}</div></Link>)
                     }
                 </div>
                 </div>
