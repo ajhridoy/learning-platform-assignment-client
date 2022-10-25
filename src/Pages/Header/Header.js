@@ -10,7 +10,7 @@ const Header = () => {
             <div>
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
                     <Link to='/'>
-                        <h2 className="text-2xl font-bold flex items-center"><span className='text-4xl'><FaGraduationCap></FaGraduationCap></span> <span>E-Tech Knowledge</span></h2>
+                        <h2 className="text-2xl font-bold flex items-center"><span className='text-4xl'><FaGraduationCap></FaGraduationCap></span> <span className='ml-2'>Tech-Knowledge</span></h2>
                     </Link>
                     <div className="md:hidden">
                         <button
