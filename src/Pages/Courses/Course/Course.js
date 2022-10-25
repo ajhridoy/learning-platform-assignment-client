@@ -21,7 +21,7 @@ const Course = ({ course }) => {
             href="#"
             className="absolute bottom-0 w-full"
           >
-            <button className="text-violate-400 hover:bg-green-500 font-medium text-sm bg-green-300 w-full rounded-b-lg p-3 flex items-center justify-center"><span>See Details</span><span className="ml-2"><FaArrowRight></FaArrowRight></span></button>
+            <button className="text-violate-400 hover:bg-emerald-500 font-medium text-sm bg-emerald-300 w-full rounded-b-lg p-3 flex items-center justify-center"><span>See Details</span><span className="ml-2"><FaArrowRight></FaArrowRight></span></button>
           </Link>
         </div>
       </div>
