@@ -1,16 +1,36 @@
 import React from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context API/UserAuth/UserAuth';
 
 const Signup = () => {
+  const {createUser, updateUserProfile} = useContext(AuthContext)
+  const [error, setError] = useState()
   const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target;
-    const firstName = form.firstName.value
-    const lastName = form.lastName.value
+    const name = form.name.value
     const photourl = form.photourl.value
     const email = form.email.value
     const password = form.password.value
-    console.log(firstName, lastName, photourl, email, password)
+    // console.log(firstName, lastName, photourl, email, password)
+    createUser(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user)
+      form.reset()
+      //update name and image
+      updateUserProfile(name, photourl)
+      .then(() => {
+
+      }).catch((error) => {
+        setError(error.message)
+      });
+    })
+    .catch((error) => {
+      setError(error.message);
+    });
   }
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -21,30 +41,15 @@ const Signup = () => {
         <form onSubmit={handleSubmit} className="mt-6">
           <div className="mb-2">
             <label
-              htmlFor="firstName"
+              htmlFor="name"
               className="block text-sm font-semibold text-gray-800"
             >
-              First Name
+              Full Name
             </label>
             <input
               type="text"
-              name="firstName"
-              placeholder="First Name"
-              className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              required
-            />
-          </div>
-          <div className="mb-2">
-            <label
-              htmlFor="lastName"
-              className="block text-sm font-semibold text-gray-800"
-            >
-              Last Name
-            </label>
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Last name"
+              name="name"
+              placeholder="Name"
               className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               required
             />
@@ -54,7 +59,7 @@ const Signup = () => {
               htmlFor="photourl"
               className="block text-sm font-semibold text-gray-800"
             >
-              Email
+              Photo URL
             </label>
             <input
               type="text"
@@ -94,6 +99,7 @@ const Signup = () => {
               required
             />
           </div>
+          <p className='text-red-500 font-medium'>{error}</p>
           <div className="mt-6">
             <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
               Sign Up

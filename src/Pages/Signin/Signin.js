@@ -1,14 +1,34 @@
-import React from "react";
+import { fromJSON } from "postcss";
+import React, { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context API/UserAuth/UserAuth";
 
 const Signin = () => {
+  const {userSignin} = useContext(AuthContext)
+  const [error, setError] = useState()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const form = e.target;
+    const email = form.email.value
+    const password = form.password.value
+    userSignin(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user)
+      form.reset()
+    })
+    .catch((error) => {
+      setError(error.message);
+    });
+  }
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-gray-100 rounded-md shadow-xl lg:max-w-xl">
         <h1 className="text-3xl font-semibold text-center text-purple-700 uppercase">
           Sign in
         </h1>
-        <form className="mt-6">
+        <form onSubmit={handleSubmit} className="mt-6">
           <div className="mb-2">
             <label
               htmlFor="email"
@@ -43,6 +63,7 @@ const Signin = () => {
             Forget Password?
           </Link>
           <div className="mt-6">
+          <p className='text-red-500 font-medium'>{error}</p>
             <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
               Login
             </button>
