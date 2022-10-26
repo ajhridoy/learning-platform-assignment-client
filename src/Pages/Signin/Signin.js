@@ -1,12 +1,15 @@
 import { fromJSON } from "postcss";
 import React, { useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context API/UserAuth/UserAuth";
 
 const Signin = () => {
   const {userSignin, googleSignin, githubSignin} = useContext(AuthContext)
   const [error, setError] = useState()
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || '/home'
   const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target;
@@ -17,6 +20,7 @@ const Signin = () => {
       const user = userCredential.user;
       console.log(user)
       form.reset()
+      navigate(from, {replace: true})
     })
     .catch((error) => {
       setError(error.message);
@@ -29,6 +33,7 @@ const Signin = () => {
     .then((result) => {
       const user = result.user;
       console.log(user)
+      navigate(from, {replace: true})
     }).catch((error) => {
       setError(error.message);
     });
@@ -40,6 +45,7 @@ const Signin = () => {
     .then((result) => {
       const user = result.user;
       console.log(user)
+      navigate(from, {replace: true})
     }).catch((error) => {
       setError(error.message);
     });

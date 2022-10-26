@@ -8,6 +8,7 @@ import Faq from "../../Pages/Faq/Faq";
 import Home from "../../Pages/Header/Home/Home/Home";
 import Signin from "../../Pages/Signin/Signin";
 import Signup from "../../Pages/Signup/Signup";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -34,7 +35,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/cheackout/:id',
-                element: <CheackOut></CheackOut>,
+                element: <PrivateRoute><CheackOut></CheackOut></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/course/${params.id}`)
             },
             {
