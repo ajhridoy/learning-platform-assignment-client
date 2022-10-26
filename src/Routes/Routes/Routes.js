@@ -4,6 +4,7 @@ import Blog from "../../Pages/Blog/Blog";
 import CheackOut from "../../Pages/Courses/CheackOut/CheackOut";
 import CourseDetails from "../../Pages/Courses/CourseDetails/CourseDetails";
 import Courses from "../../Pages/Courses/Courses";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Faq from "../../Pages/Faq/Faq";
 import Home from "../../Pages/Header/Home/Home/Home";
 import Signin from "../../Pages/Signin/Signin";
@@ -14,6 +15,7 @@ export const routes = createBrowserRouter([
     {
         path: '/',
         element:<Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
