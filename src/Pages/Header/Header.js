@@ -7,6 +7,7 @@ import { AuthContext } from '../../Context API/UserAuth/UserAuth';
 const Header = () => {
     const {user, logOut} = useContext(AuthContext)
     const [navbar, setNavbar] = useState(false);
+    const [toggle, setToggle] = useState(false)
 
     const handleLogOut = () => {
         logOut()
@@ -82,8 +83,10 @@ const Header = () => {
                         <li className="text-gray-600 hover:text-orange-600 font-semibold">
                             <Link to='/blog'>Blog</Link>
                         </li>
-                        <li className="text-gray-600 hover:text-orange-600 font-semibold">
-                            <Link to='#'><button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Dark</button></Link>
+                        <li className="font-semibold">
+                            <button onClick={(e) => setToggle(!toggle)} className={toggle ? "bg-black text-white font-bold py-2 px-4 border border-orange-700 rounded" : "bg-white text-black font-bold py-2 px-4 border border-orange-700 rounded"}>
+                                {toggle ? "Dark" : "Light"}
+                                </button>
                         </li>
                         {
                             user?.uid ? 
