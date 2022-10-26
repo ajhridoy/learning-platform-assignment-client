@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context API/UserAuth/UserAuth";
 
 const Signin = () => {
-  const {userSignin} = useContext(AuthContext)
+  const {userSignin, googleSignin, githubSignin} = useContext(AuthContext)
   const [error, setError] = useState()
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -19,6 +19,28 @@ const Signin = () => {
       form.reset()
     })
     .catch((error) => {
+      setError(error.message);
+    });
+  }
+
+  // log in with google
+  const handleGoogleSignin = () => {
+    googleSignin()
+    .then((result) => {
+      const user = result.user;
+      console.log(user)
+    }).catch((error) => {
+      setError(error.message);
+    });
+  }
+
+  // log in with gitHub
+  const handleGithubSignin = () => {
+    githubSignin()
+    .then((result) => {
+      const user = result.user;
+      console.log(user)
+    }).catch((error) => {
       setError(error.message);
     });
   }
@@ -74,6 +96,7 @@ const Signin = () => {
         </div>
         <div className="mt-6 gap-x-2 text-orange-900">
           <button
+          onClick={handleGoogleSignin}
             type="button"
             className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600 mb-3"
           >
@@ -86,7 +109,7 @@ const Signin = () => {
             </svg>
               <span className="ml-2 font-semibold">Continue with Google</span>
           </button>
-          <button className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600">
+          <button onClick={handleGithubSignin} className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
