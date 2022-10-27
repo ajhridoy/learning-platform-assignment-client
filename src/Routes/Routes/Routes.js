@@ -6,7 +6,7 @@ import CourseDetails from "../../Pages/Courses/CourseDetails/CourseDetails";
 import Courses from "../../Pages/Courses/Courses";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Faq from "../../Pages/Faq/Faq";
-import Home from "../../Pages/Header/Home/Home/Home";
+import Home from "../../Pages/Home/Home";
 import Signin from "../../Pages/Signin/Signin";
 import Signup from "../../Pages/Signup/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
