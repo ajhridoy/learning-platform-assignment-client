@@ -91,7 +91,7 @@ const Header = () => {
                         {
                             user?.uid ? 
                             <>
-                            <li><img title={user.displayName} className='rounded-full w-[50px]' src={user.photoURL} alt="" /></li>
+                            <li className='flex justify-center'><img title={user.displayName} className='rounded-full w-[50px]' src={user.photoURL} alt="" /></li>
                             <li><button onClick={handleLogOut} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Log Out</button></li>
                             </> 
                             :<li className="text-gray-600 hover:text-blue-600">
