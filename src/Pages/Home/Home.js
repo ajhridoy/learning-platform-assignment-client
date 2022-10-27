@@ -50,7 +50,7 @@ const Home = () => {
       {/* choose us section start */}
 
       {/* instructor section start */}
-        <div className="py-6 bg-gray-200 mb-4">
+        <div className="py-6 mb-4">
           <div className="container flex flex-col items-center justify-center p-4 mx-auto sm:p-10">
             <h1 className="text-3xl font-bold leading-none text-center sm:text-5xl">
               Our Instructors
