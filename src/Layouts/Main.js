@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from '../CommonPage/Footer/Footer';
-import Header from '../Pages/Header/Header';
+import Header from '../CommonPage/Header/Header';
 
 const Main = () => {
     return (

@@ -1,11 +1,14 @@
 import { fromJSON } from "postcss";
 import React, { useState } from "react";
 import { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context API/UserAuth/UserAuth";
 
 const Signin = () => {
-  const {userSignin, googleSignin, githubSignin} = useContext(AuthContext)
+  const {userSignin, googleSignin, githubSignin, resetPassword} = useContext(AuthContext)
+  const [email, setEmail] = useState()
+  console.log(email)
   const [error, setError] = useState()
   const location = useLocation();
   const navigate = useNavigate();
@@ -19,6 +22,7 @@ const Signin = () => {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user)
+      toast.success('Login Successfully')
       form.reset()
       navigate(from, {replace: true})
     })
@@ -50,6 +54,21 @@ const Signin = () => {
       setError(error.message);
     });
   }
+  //reset password
+  const handleResetPass = () => {
+      if(email){
+        resetPassword(email)
+    .then(() => {
+      toast.success('Please cheack your email for reset password')
+    })
+    .catch((error) => {
+     setError(error.message);
+    });
+      }
+      else{
+        toast.error('please put your email on the Email field')
+      }
+  }
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-gray-100 rounded-md shadow-xl lg:max-w-xl">
@@ -67,6 +86,7 @@ const Signin = () => {
             <input
               type="email"
               name="email"
+              onBlur={(e) => setEmail(e.target.value)}
               placeholder="email@example.com"
               className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               required
@@ -87,9 +107,11 @@ const Signin = () => {
               required
             />
           </div>
-          <Link href="#" className="text-xs text-purple-600 hover:underline">
+          <button onClick={handleResetPass}>
+          <Link className="text-xs text-purple-600 hover:underline">
             Forget Password?
           </Link>
+          </button>
           <div className="mt-6">
           <p className='text-red-500 font-medium'>{error}</p>
             <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">

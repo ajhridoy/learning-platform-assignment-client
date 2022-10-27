@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context API/UserAuth/UserAuth';
 
@@ -19,6 +20,7 @@ const Signup = () => {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user)
+      toast.success('Sign Up Successfully')
       form.reset()
       //update name and image
       updateUserProfile(name, photourl)
